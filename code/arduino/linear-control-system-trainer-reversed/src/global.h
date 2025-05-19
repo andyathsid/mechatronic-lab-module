@@ -17,10 +17,10 @@
 #define __minADC 0
 #define __maxADC 1023
 #define __maxValPWM 200
-// unsigned long __minRot = 0;
-// unsigned long __maxRot = 105629;
-unsigned long __minRot;
-unsigned long __maxRot;
+unsigned long __minRot = 0;
+unsigned long __maxRot = 105629;
+// unsigned long __minRot;
+// unsigned long __maxRot;
 double __minDeg = -9.0;
 double __maxDeg = 9.0;
 
