@@ -50,7 +50,7 @@ while continueRunning
     disp('1. Pastikan sistem sudah direset dan berada pada posisi awal (9)');
     disp('2. Ketik "ready" dan tekan Enter saat siap untuk mengukur metrik kinerja');
     disp('3. Kemudian tekan tombol "Start" pada Trainer untuk memulai pengujian');
-    disp('4. Skrip akan mengumpulkan data selama 60 detik dan menghitung metrik kinerja');
+    disp(['4. Skrip akan mengumpulkan data selama ' num2str(testDuration) ' detik dan menghitung metrik kinerja']);
     
     % Flag to track if we need to restart the test
     needRestart = false;
