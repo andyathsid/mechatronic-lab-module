@@ -10,7 +10,7 @@ void lcd_data() {
   // Serial.println(derajatPos);
   Serial.print(set_point);
   Serial.print(",");
-  Serial.print(derajatPos);
+  Serial.print(derajatPos, 3); 
   Serial.print(",");
   Serial.print(Kp, 1);
   Serial.print(",");
@@ -58,13 +58,13 @@ void button() {
 
   if (digitalRead(push_3) == 0) {
     if (step == 0) {
-      Kp += 0.5;
+      Kp += 0.1;  
     }
     if (step == 1) {
-      Ki += 0.5;
+      Ki += 0.1;  
     }
     if (step == 2) {
-      Kd += 0.5;
+      Kd += 0.05;  
     }
 
     delay(100);
@@ -72,17 +72,17 @@ void button() {
 
   if (digitalRead(push_4) == 0) {
     if (step == 0) {
-      Kp -= 0.5;
+      Kp -= 0.1;  
       if (Kp < 0)
         Kp = 0;
     }
     if (step == 1) {
-      Ki -= 0.5;
+      Ki -= 0.1;  
       if (Ki < 0)
         Ki = 0;
     }
     if (step == 2) {
-      Kd -= 0.5;
+      Kd -= 0.05;  
       if (Kd < 0)
         Kd = 0;
     }
