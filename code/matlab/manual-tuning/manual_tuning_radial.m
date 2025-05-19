@@ -35,10 +35,11 @@ while continueRunning
     figure('Name', ['Trainer Sistem Kontrol Radial - Pengujian #' num2str(testCounter)], 'NumberTitle', 'off', 'Position', [100 100 1000 600]);
     h_sp = animatedline('Color', 'r', 'LineStyle', '--', 'LineWidth', 2);  % Setpoint
     h_pos = animatedline('Color', 'b', 'LineWidth', 2);  % Actual position
+    h_err = animatedline('Color', 'g', 'LineWidth', 1.5);  % Error line
     xlabel('Waktu (detik)');
     ylabel('Posisi (derajat)');
     title(['Respon Sistem Orde Kedua - Kp=' num2str(current_Kp, '%.1f') ' Ki=' num2str(current_Ki, '%.1f') ' Kd=' num2str(current_Kd, '%.2f')]);
-    legend('Setpoint', 'Posisi Aktual', 'Location', 'best');
+    legend('Setpoint', 'Posisi Aktual', 'Error', 'Location', 'best');
     grid on;
     ylim([0 180]);
     
@@ -73,11 +74,13 @@ while continueRunning
         timeVector = [];
         dataSetpoint = [];
         dataPosition = [];
+        dataError = [];  % Add error data array
         
         % Clear previous plot if restarting
         if needRestart
             clearpoints(h_sp);
             clearpoints(h_pos);
+            clearpoints(h_err);  % Clear error line
             needRestart = false;
         end
         
@@ -146,6 +149,7 @@ while continueRunning
                             current_Kp = vals(3);
                             current_Ki = vals(4);
                             current_Kd = vals(5);
+                            % currentError = currentSetpoint - currentPosition;
                             
                             % Update plot title with latest PID values
                             title(['Respon Sistem Orde Kedua - Kp=' num2str(current_Kp, '%.1f') ' Ki=' num2str(current_Ki, '%.1f') ' Kd=' num2str(current_Kd, '%.2f')]);
@@ -172,10 +176,15 @@ while continueRunning
                             addpoints(h_sp, currentTime, vals(1));  % Setpoint
                             addpoints(h_pos, currentTime, vals(2));  % Actual position
                             
+                            % Calculate and add error point
+                            currentError = currentSetpoint - currentPosition;
+                            addpoints(h_err, currentTime, currentError);
+
                             % Store data for later analysis
                             timeVector(end+1) = currentTime;
                             dataSetpoint(end+1) = vals(1);
                             dataPosition(end+1) = vals(2);
+                            dataError(end+1) = currentError;  % Store error data
                             
                             % Update axis limits
                             xlim([0, max(30, currentTime+2)]);
