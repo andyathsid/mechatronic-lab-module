@@ -16,24 +16,6 @@ void __stop() {
   digitalWrite(dir2, LOW);
 }
 
-void keKiri() {
-  analogWrite(pinPwm, speed);
-  digitalWrite(dir1, LOW);
-  digitalWrite(dir2, HIGH);
-}
-
-void keKanan() {
-  analogWrite(pinPwm, speed);
-  digitalWrite(dir1, HIGH);
-  digitalWrite(dir2, LOW);
-}
-
-void __stop() {
-  analogWrite(pinPwm, 0);
-  digitalWrite(dir1, LOW);
-  digitalWrite(dir2, LOW);
-}
-
 void __reset() {
   lcd.clear();
   lcd.setCursor(0, 0);
