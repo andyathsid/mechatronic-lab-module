@@ -42,6 +42,7 @@ while continueRunning
     legend('Setpoint', 'Posisi Aktual', 'Error', 'Location', 'best');
     grid on;
     ylim([-10 10]);  % Y-axis limits to match -9 to 9 range
+    set(gca, 'YDir', 'reverse');  % Reverse the Y-axis direction
     
     % User prompt
     disp('=====================================');
