@@ -93,6 +93,7 @@ void __reset() {
         keKanan();  
         if (limitKanan == 0) {
           __stop();
+          rotary = 0;
           dir = 0;
           derajatPos = 9;  
           __minRot = 0;
