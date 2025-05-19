@@ -215,7 +215,6 @@ while continueRunning
         % If reset was detected, restart the test loop
         if resetDetected
             disp('Sistem direset selama pengumpulan data.');
-            disp('Silakan tekan tombol BERHENTI (jika diperlukan) dan siapkan untuk pengujian baru.');
             pause(2);
             continue;
         end
