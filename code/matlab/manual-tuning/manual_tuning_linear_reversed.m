@@ -35,10 +35,11 @@ while continueRunning
     figure('Name', ['Trainer Sistem Kontrol Linear - Pengujian #' num2str(testCounter)], 'NumberTitle', 'off', 'Position', [100 100 1000 600]);
     h_sp = animatedline('Color', 'r', 'LineStyle', '--', 'LineWidth', 2);  % Setpoint
     h_pos = animatedline('Color', 'b', 'LineWidth', 2);  % Actual position
+    h_err = animatedline('Color', 'g', 'LineWidth', 1.5);  % Error line
     xlabel('Waktu (detik)');
     ylabel('Posisi (desimal)');
     title(['Respon Sistem Orde Kedua - Kp=' num2str(current_Kp, '%.1f') ' Ki=' num2str(current_Ki, '%.1f') ' Kd=' num2str(current_Kd, '%.2f')]);
-    legend('Setpoint', 'Posisi Aktual', 'Location', 'best');
+    legend('Setpoint', 'Posisi Aktual', 'Error', 'Location', 'best');
     grid on;
     ylim([-10 10]);  % Y-axis limits to match -9 to 9 range
     
@@ -72,11 +73,13 @@ while continueRunning
         timeVector = [];
         dataSetpoint = [];
         dataPosition = [];
+        dataError = [];  % Add error data array
         
         % Clear previous plot if restarting
         if needRestart
             clearpoints(h_sp);
             clearpoints(h_pos);
+            clearpoints(h_err);  % Clear error line
             needRestart = false;
         end
         
@@ -222,10 +225,15 @@ while continueRunning
                             addpoints(h_sp, currentTime, vals(1));  % Setpoint
                             addpoints(h_pos, currentTime, vals(2));  % Actual position
                             
+                            % Calculate and add error point
+                            error = vals(1) - vals(2);  % Setpoint - Position
+                            addpoints(h_err, currentTime, error);
+                            
                             % Store data for later analysis
                             timeVector(end+1) = currentTime;
                             dataSetpoint(end+1) = vals(1);
                             dataPosition(end+1) = vals(2);
+                            dataError(end+1) = error;  % Store error data
                             
                             % Update axis limits
                             xlim([0, max(30, currentTime+2)]);
