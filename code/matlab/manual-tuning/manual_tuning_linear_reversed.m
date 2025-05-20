@@ -500,7 +500,3 @@ function result = iif(condition, trueVal, falseVal)
         result = falseVal;
     end
 end
-
-% Clean up
-clear s;
-disp('Skrip selesai. Semua gambar akan tetap terbuka untuk perbandingan.');
