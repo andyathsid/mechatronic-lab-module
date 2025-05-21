@@ -413,8 +413,8 @@ if testCounter > 1
     
     % Save results to CSV file
     resultsTable = struct2table(resultsLog);
-    writetable(resultsTable, 'PID_tuning_results.csv');
-    disp('Hasil disimpan ke PID_tuning_results.csv');
+    writetable(resultsTable, 'PID_tuning_results_radial.csv');
+    disp('Hasil disimpan ke PID_tuning_results_radial.csv');
 end
 
 % Helper function for handling Inf values in display
