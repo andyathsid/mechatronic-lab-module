@@ -11,7 +11,7 @@ s = serialport(arduinoPort, baudRate);
 flush(s);
 
 % Performance measurement settings
-testDuration = 60;  % Time limit for measurement in seconds (can be adjusted)
+testDuration = 30;  % Time limit for measurement in seconds (can be adjusted)
 steadyStateThreshold = 0.02;  % 2% threshold for steady state
 
 % Initialize PID parameters
